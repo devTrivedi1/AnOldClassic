@@ -9,10 +9,11 @@ public class Movement : MonoBehaviour
 	public float speed = 10f;
 
 	private bool isJumping;
-
+	private bool grounded;
 	private Rigidbody playerRB;
 	void Start()
 	{
+		grounded = GameObject.FindGameObjectWithTag("Ground");
 		playerRB = GetComponent<Rigidbody>();
 	}
 	void Update()
@@ -26,11 +27,6 @@ public class Movement : MonoBehaviour
 
 	void ReadInputs()
 	{
-		if (Input.GetButtonDown("Jump"))
-		{
-			isJumping = true;
-		}
-
 		horizontalInput = Input.GetAxis("Horizontal");
 		verticalInput = Input.GetAxis("Vertical");
 	}
@@ -39,6 +35,6 @@ public class Movement : MonoBehaviour
 	{
 		float y = playerRB.velocity.y;
 		playerRB.velocity = new Vector2(horizontalInput * speed, y);
-
 	}
+
 }
